@@ -32,7 +32,7 @@ export default class HomePage extends Component {
       this.setState({
         hasSendRequest: true
       });
-      const server_login_url = "https://nogerm-demo-test.herokuapp.com/login";
+      const server_login_url = "https://wedevote-nogerm.herokuapp.com/login";
       const headers = {
         'Content-Type': 'application/json'
       }
