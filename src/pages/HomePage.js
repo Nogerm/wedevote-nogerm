@@ -14,8 +14,8 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       activeItem: 'time_info',
-      hasSendRequest: true,
-      hasLoggedIn: true,
+      hasSendRequest: false,
+      hasLoggedIn: false,
       userId: "",
       userName: "尚未登入",
       userImageUrl: userDefaultImg
