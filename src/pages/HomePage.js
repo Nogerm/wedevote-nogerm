@@ -45,11 +45,35 @@ export default class HomePage extends Component {
         const decoded = jwt_decode(response.data.id_token);
         console.log("[login]\ndecode: " + JSON.stringify(decoded));
         console.log("[login]\nuser id: " + decoded.sub + "\nuser name: " + decoded.name + "\nuser image url: " + decoded.picture);
+        
         this.setState({
           userId: decoded.sub || "",
           userName: decoded.name || "",
-          userImageUrl: decoded.picture || "",
-          hasLoggedIn: true
+          userImageUrl: decoded.picture || ""
+        }, () => {
+          //check user available
+          const get_admins_url = "https://wedevote-nogerm.herokuapp.com/admins";
+          axios.get(get_admins_url)
+          .then(response => {
+            console.log("[get admins] success" + JSON.stringify(response));
+
+            const found = response.admins.find(function(element) {
+              return element === this.state.userId;
+            });
+
+            if(found === undefined) {
+              alert("沒有使用權限");
+            } else {
+              alert("歡迎登入，" + this.state.userName);
+
+              this.setState({
+                hasLoggedIn: true
+              });
+            }
+          })
+          .catch(error => {
+            console.log("[get admins] error" + error);
+          });
         });
       })
       .catch(error => {
