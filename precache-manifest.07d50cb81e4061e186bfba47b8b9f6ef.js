@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "701ae6abd4719e9c2ada3535a497b341",
-    "url": "/wedevote-nogerm/static/media/outline-icons.701ae6ab.eot"
+    "revision": "962a1bf31c081691065fe333d9fa8105",
+    "url": "/wedevote-nogerm/static/media/icons.962a1bf3.svg"
   },
   {
-    "revision": "3e975c891e896b8f27bd",
+    "revision": "c367bd9017ab86aa1c40",
     "url": "/wedevote-nogerm/static/css/main.f5a1043e.chunk.css"
   },
   {
@@ -40,12 +40,12 @@ self.__precacheManifest = [
     "url": "/wedevote-nogerm/static/media/icons.b87b9ba5.ttf"
   },
   {
-    "revision": "962a1bf31c081691065fe333d9fa8105",
-    "url": "/wedevote-nogerm/static/media/icons.962a1bf3.svg"
+    "revision": "701ae6abd4719e9c2ada3535a497b341",
+    "url": "/wedevote-nogerm/static/media/outline-icons.701ae6ab.eot"
   },
   {
-    "revision": "3e975c891e896b8f27bd",
-    "url": "/wedevote-nogerm/static/js/main.f89d976b.chunk.js"
+    "revision": "c367bd9017ab86aa1c40",
+    "url": "/wedevote-nogerm/static/js/main.426f239f.chunk.js"
   },
   {
     "revision": "cd6c777f1945164224dee082abaea03a",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/wedevote-nogerm/static/css/2.677f6d08.chunk.css"
   },
   {
-    "revision": "e22fb81d01aecef307c2856f2c0f5636",
+    "revision": "7e5cf7d0dab034ab3ed12faf9429c772",
     "url": "/wedevote-nogerm/index.html"
   }
 ];
