@@ -53,16 +53,21 @@ export default class HomePage extends Component {
         }, () => {
           //check user available
           const get_admins_url = "https://wedevote-nogerm.herokuapp.com/admins";
+          const logged_in_user = this.state.userId;
           axios.get(get_admins_url)
           .then(response => {
             console.log("[get admins] success" + JSON.stringify(response));
 
-            const found = response.admins.find(function(element) {
-              return element === this.state.userId;
+            const found = response.data[0].admins.find(function(element) {
+              return element === logged_in_user;
             });
 
             if(found === undefined) {
               alert("沒有使用權限");
+
+              this.setState({
+                hasSendRequest: false
+              });
             } else {
               alert("歡迎登入，" + this.state.userName);
 
