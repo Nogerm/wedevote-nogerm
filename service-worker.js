@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/wedevote-nogerm/precache-manifest.07d50cb81e4061e186bfba47b8b9f6ef.js"
+  "/wedevote-nogerm/precache-manifest.89cf10c6f4204aeb0d8bc89387d37085.js"
 );
 
 workbox.clientsClaim();

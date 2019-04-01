@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/wedevote-nogerm/static/media/icons.962a1bf3.svg"
   },
   {
-    "revision": "c367bd9017ab86aa1c40",
+    "revision": "78f29d83e2bbd1685bcf",
     "url": "/wedevote-nogerm/static/css/main.f5a1043e.chunk.css"
   },
   {
@@ -44,8 +44,8 @@ self.__precacheManifest = [
     "url": "/wedevote-nogerm/static/media/outline-icons.701ae6ab.eot"
   },
   {
-    "revision": "c367bd9017ab86aa1c40",
-    "url": "/wedevote-nogerm/static/js/main.426f239f.chunk.js"
+    "revision": "78f29d83e2bbd1685bcf",
+    "url": "/wedevote-nogerm/static/js/main.864bfcaf.chunk.js"
   },
   {
     "revision": "cd6c777f1945164224dee082abaea03a",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/wedevote-nogerm/static/css/2.677f6d08.chunk.css"
   },
   {
-    "revision": "7e5cf7d0dab034ab3ed12faf9429c772",
+    "revision": "4335bbf288309c192a753c56334f5386",
     "url": "/wedevote-nogerm/index.html"
   }
 ];
