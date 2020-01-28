@@ -2,6 +2,7 @@ import React, { Component}  from 'react';
 import { Container, Icon, Table, Divider, Header, Segment } from 'semantic-ui-react'
 import { getRoutineReminder } from '../MongoDB';
 import ReminderModal from './ReminderModal';
+import { remindGetAll } from '../Api';
 
 export default class RoutineReminder extends Component {
 
@@ -14,19 +15,29 @@ export default class RoutineReminder extends Component {
   }
 
   queryData = () => {
-		getRoutineReminder().then(data => {
-			console.log("[RoutineReminder queryData]" + JSON.stringify(data));
-			this.setState({
-        routineReminders: [...data]
-      });
-    });
-	}
+	// 	getRoutineReminder().then(data => {
+	// 		console.log("[RoutineReminder queryData]" + JSON.stringify(data));
+	// 		this.setState({
+    //     routineReminders: [...data]
+    //   });
+    // });
+	// }
 	
-	delayQuery = () => {
-    const queryData = this.queryData;
-    setTimeout(() => {
-      queryData();
-    }, 2000);
+	// delayQuery = () => {
+    // const queryData = this.queryData;
+    // setTimeout(() => {
+    //   queryData();
+	// }, 2000);
+	remindGetAll()
+	.then(response => {
+		console.log("remindGetAll success" + response.data);
+		this.setState({
+		    routineReminders: response.data
+		});
+	}) 
+	.catch(err => {
+		console.log("remindGetAll error" + err);
+	})
   }
 
   render() {
