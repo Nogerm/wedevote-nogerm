@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Icon, Modal, Form } from 'semantic-ui-react'
 import { getRoutineReminder, addRoutineReminder, updateRoutineReminder, removeRoutineReminder } from '../MongoDB';
 import { remindCreateNewGroup, remindDeleteGroup } from '../Api';
-//const uuidv4 = require('uuid/v4');
+const uuidv4 = require('uuid/v4');
 
 export default class ReminderModal extends Component {
 

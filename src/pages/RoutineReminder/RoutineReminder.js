@@ -28,7 +28,7 @@ export default class RoutineReminder extends Component {
 
   render() {
     const reminders = this.state.routineReminders;
-    const delayQuery = this.delayQuery;
+    const queryData = this.queryData;
 
     return(
       <Segment raised>
@@ -45,7 +45,7 @@ export default class RoutineReminder extends Component {
                 <Table.Row>
                   <Table.HeaderCell colSpan='6'>
                     訊息群組#{index+1}
-                    <ReminderModal type='REMOVE_GROUP' reminderId={reminder._id} reminderMsgs={reminder.msgs} callback={delayQuery}/>
+                    <ReminderModal type='REMOVE_GROUP' reminderId={reminder._id} reminderMsgs={reminder.msgs} callback={queryData}/>
 									</Table.HeaderCell>
                 </Table.Row>
 								<Table.Row>
@@ -68,8 +68,8 @@ export default class RoutineReminder extends Component {
 											{msg.type === "text" ? <Table.Cell/> : <Table.Cell>{msg.stkrId}</Table.Cell>}
 											{msg.type === "text" ? <Table.Cell/> : <Table.Cell>{msg.pkgId}</Table.Cell>}
 											<Table.Cell>
-                        <ReminderModal type='REMOVE_MSG' reminderId={reminder._id} reminderMsg={msg} callback={delayQuery}/>
-                        <ReminderModal type='UPDATE' reminderId={reminder._id} reminderMsg={msg} callback={delayQuery}/>
+                        <ReminderModal type='REMOVE_MSG' reminderId={reminder._id} reminderMsg={msg} callback={queryData}/>
+                        <ReminderModal type='UPDATE' reminderId={reminder._id} reminderMsg={msg} callback={queryData}/>
 											</Table.Cell>
 										</Table.Row>
 									)
@@ -79,7 +79,7 @@ export default class RoutineReminder extends Component {
 							<Table.Footer fullWidth>
 								<Table.Row>
 									<Table.HeaderCell colSpan='6'>
-                    <ReminderModal type='ADD_MSG' reminderId={reminder._id} reminderMsgs={reminder.msgs} callback={delayQuery}/>
+                    <ReminderModal type='ADD_MSG' reminderId={reminder._id} reminderMsgs={reminder.msgs} callback={queryData}/>
 									</Table.HeaderCell>
 								</Table.Row>
 							</Table.Footer>
@@ -87,7 +87,7 @@ export default class RoutineReminder extends Component {
 					)
         })}
         <Container style={{ height: '30px' }}>
-          <ReminderModal type='ADD_GROUP' callback={delayQuery}/>
+          <ReminderModal type='ADD_GROUP' callback={queryData}/>
         </Container>
 			</Segment>
     )
