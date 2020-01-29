@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Icon, Modal, Form } from 'semantic-ui-react'
 import { getRoutineReminder, addRoutineReminder, updateRoutineReminder, removeRoutineReminder } from '../MongoDB';
-const uuidv4 = require('uuid/v4');
+import { remindCreateNewGroup, remindDeleteGroup } from '../Api';
+//const uuidv4 = require('uuid/v4');
 
 export default class ReminderModal extends Component {
 
@@ -31,12 +32,15 @@ export default class ReminderModal extends Component {
   }
 
   modalReminderAddGroupSubmit = () => {
-    const newData = {
-      id: uuidv4(),
-      msgs: []
-    }
-    addRoutineReminder(newData);
-    this.modalReminderAddGroupClose();
+    remindCreateNewGroup()
+    .then(response => {
+      console.log("remindCreateNewGroup OK :" + JSON.stringify(response.data));
+      this.modalReminderAddGroupClose();
+    })
+    .catch(err => {
+      console.log("remindCreateNewGroup NG :" + JSON.stringify(err));
+      this.modalReminderAddGroupClose();
+    });
   }
 
   modalReminderAddMsgOpen = () => {
@@ -97,8 +101,15 @@ export default class ReminderModal extends Component {
   }
 
   modalReminderRemoveGroupSubmit = () => {
-    removeRoutineReminder(this.state.reminderId);
-    this.modalReminderRemoveGroupClose();
+    remindDeleteGroup(this.state.reminderId)
+    .then(response => {
+      console.log("remindDeleteGroup OK " + JSON.stringify(response.data));
+      this.modalReminderRemoveGroupClose();
+    })
+    .catch(err => {
+      console.log("remindDeleteGroup NG " + JSON.stringify(err));
+      this.modalReminderRemoveGroupClose();
+    });
   }
 
   modalReminderRemoveMsgOpen = () => {

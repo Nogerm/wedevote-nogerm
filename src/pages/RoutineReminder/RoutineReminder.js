@@ -1,6 +1,5 @@
 import React, { Component}  from 'react';
 import { Container, Icon, Table, Divider, Header, Segment } from 'semantic-ui-react'
-import { getRoutineReminder } from '../MongoDB';
 import ReminderModal from './ReminderModal';
 import { remindGetAll } from '../Api';
 
@@ -15,19 +14,6 @@ export default class RoutineReminder extends Component {
   }
 
   queryData = () => {
-	// 	getRoutineReminder().then(data => {
-	// 		console.log("[RoutineReminder queryData]" + JSON.stringify(data));
-	// 		this.setState({
-    //     routineReminders: [...data]
-    //   });
-    // });
-	// }
-	
-	// delayQuery = () => {
-    // const queryData = this.queryData;
-    // setTimeout(() => {
-    //   queryData();
-	// }, 2000);
 	remindGetAll()
 	.then(response => {
 		console.log("remindGetAll success" + response.data);
@@ -77,10 +63,10 @@ export default class RoutineReminder extends Component {
 									return (
 										<Table.Row key={msg.id} >
                       <Table.Cell>{idx+1}</Table.Cell>
-											<Table.Cell>{msg.isText ? "文字" : "貼圖"}</Table.Cell>
-											{msg.isText ? <Table.Cell>{msg.text}</Table.Cell> : <Table.Cell/>}
-											{msg.isText ? <Table.Cell/> : <Table.Cell>{msg.stkrId}</Table.Cell>}
-											{msg.isText ? <Table.Cell/> : <Table.Cell>{msg.pkgId}</Table.Cell>}
+											<Table.Cell>{msg.type === "text" ? "文字" : "貼圖"}</Table.Cell>
+											{msg.type === "text" ? <Table.Cell>{msg.text}</Table.Cell> : <Table.Cell/>}
+											{msg.type === "text" ? <Table.Cell/> : <Table.Cell>{msg.stkrId}</Table.Cell>}
+											{msg.type === "text" ? <Table.Cell/> : <Table.Cell>{msg.pkgId}</Table.Cell>}
 											<Table.Cell>
                         <ReminderModal type='REMOVE_MSG' reminderId={reminder._id} reminderMsg={msg} callback={delayQuery}/>
                         <ReminderModal type='UPDATE' reminderId={reminder._id} reminderMsg={msg} callback={delayQuery}/>

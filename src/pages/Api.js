@@ -10,6 +10,13 @@ export const remindCreateNewGroup = function() {
     return axios.post(hostUrl + "/routine_remind_group")
 }
 
+export const remindDeleteGroup = function(groupId) {
+    const data = {
+        groupId: groupId
+    }
+    return axios.delete(hostUrl + "/routine_remind_group", data)
+}
+
 export const remindCreateNewMsg = function(groupId, msgObj) {
     const data = {
         groupId: groupId,

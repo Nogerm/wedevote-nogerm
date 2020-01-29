@@ -91,6 +91,7 @@ export default class HomePage extends Component {
     const requestUrl = "https://access.line.me/oauth2/v2.1/authorize";
     const channelId = "1560224466";
     const redirectUri = "https://nogerm.github.io/wedevote-nogerm";
+    //const redirectUri = "https://3c5f3393.ngrok.io";//for test
     const state = "12345";
     const nonce = "54321";
     const maxAge = 30 * 60;
