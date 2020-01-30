@@ -250,20 +250,20 @@ export default class ReminderModal extends Component {
                   <Form.Radio
                     label='文字'
                     value='text'
-                    checked={reminderMsg.isText === true}
-                    disabled={reminderMsg.isText === false}
+                    checked={reminderMsg.type === "text"}
+                    disabled={reminderMsg.type !== "text"}
                   />
                   <Form.Radio
                     label='貼圖'
                     value='sticker'
-                    checked={reminderMsg.isText === false}
-                    disabled={reminderMsg.isText === true}
+                    checked={reminderMsg.type !== "text"}
+                    disabled={reminderMsg.type === "text"}
                   />
                 </Form.Group>
-                <Form.TextArea label='文字訊息' placeholder={reminderMsg.text} disabled={reminderMsg.isText === false} onChange={e => {this.setState({inputMsgType: 'text', inputMsgContent: e.target.value});}}/>
+                <Form.TextArea label='文字訊息' placeholder={reminderMsg.text} disabled={reminderMsg.type !== "text"} onChange={e => {this.setState({inputMsgType: 'text', inputMsgContent: e.target.value});}}/>
                 <Form.Group widths='equal'>
-                  <Form.Input fluid label='STKID' placeholder={reminderMsg.stkrId} disabled={reminderMsg.isText === true} onChange={e => {this.setState({inputMsgType: 'sticker', inputStkrId: e.target.value});}}/>
-                  <Form.Input fluid label='STKPKGID' placeholder={reminderMsg.pkgId} disabled={reminderMsg.isText === true} onChange={e => {this.setState({inputMsgType: 'sticker', inputPkgId: e.target.value});}}/>
+                  <Form.Input fluid label='STKID' placeholder={reminderMsg.stkrId} disabled={reminderMsg.type === "text"} onChange={e => {this.setState({inputMsgType: 'sticker', inputStkrId: e.target.value});}}/>
+                  <Form.Input fluid label='STKPKGID' placeholder={reminderMsg.pkgId} disabled={reminderMsg.type === "text"} onChange={e => {this.setState({inputMsgType: 'sticker', inputPkgId: e.target.value});}}/>
                 </Form.Group>
               </Form>
             </Modal.Description>
