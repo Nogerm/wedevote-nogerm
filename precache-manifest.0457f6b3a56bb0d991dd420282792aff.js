@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "a85f0b9aed68f372686e",
+    "revision": "2a3136e5c47527a389c5",
     "url": "/wedevote-nogerm/static/css/main.0157cb6a.chunk.css"
   },
   {
-    "revision": "a85f0b9aed68f372686e",
-    "url": "/wedevote-nogerm/static/js/main.74802ea7.chunk.js"
+    "revision": "2a3136e5c47527a389c5",
+    "url": "/wedevote-nogerm/static/js/main.913e43dc.chunk.js"
   },
   {
     "revision": "972e68c25224a6179bd0",
@@ -24,6 +24,10 @@ self.__precacheManifest = [
     "url": "/wedevote-nogerm/static/media/flags.9c74e172.png"
   },
   {
+    "revision": "0ab54153eeeca0ce03978cc463b257f7",
+    "url": "/wedevote-nogerm/static/media/icons.0ab54153.woff2"
+  },
+  {
     "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
     "url": "/wedevote-nogerm/static/media/icons.8e3c7f55.eot"
   },
@@ -32,16 +36,12 @@ self.__precacheManifest = [
     "url": "/wedevote-nogerm/static/media/icons.faff9214.woff"
   },
   {
-    "revision": "0ab54153eeeca0ce03978cc463b257f7",
-    "url": "/wedevote-nogerm/static/media/icons.0ab54153.woff2"
+    "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
+    "url": "/wedevote-nogerm/static/media/icons.b87b9ba5.ttf"
   },
   {
     "revision": "cd6c777f1945164224dee082abaea03a",
     "url": "/wedevote-nogerm/static/media/outline-icons.cd6c777f.woff2"
-  },
-  {
-    "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
-    "url": "/wedevote-nogerm/static/media/icons.b87b9ba5.ttf"
   },
   {
     "revision": "701ae6abd4719e9c2ada3535a497b341",
@@ -60,24 +60,24 @@ self.__precacheManifest = [
     "url": "/wedevote-nogerm/static/media/outline-icons.ad97afd3.ttf"
   },
   {
-    "revision": "82f60bd0b94a1ed68b1e6e309ce2e8c3",
-    "url": "/wedevote-nogerm/static/media/outline-icons.82f60bd0.svg"
-  },
-  {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
     "url": "/wedevote-nogerm/static/media/brand-icons.e8c322de.woff2"
+  },
+  {
+    "revision": "82f60bd0b94a1ed68b1e6e309ce2e8c3",
+    "url": "/wedevote-nogerm/static/media/outline-icons.82f60bd0.svg"
   },
   {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
     "url": "/wedevote-nogerm/static/media/brand-icons.13db00b7.eot"
   },
   {
-    "revision": "c5ebe0b32dc1b5cc449a76c4204d13bb",
-    "url": "/wedevote-nogerm/static/media/brand-icons.c5ebe0b3.ttf"
-  },
-  {
     "revision": "a046592bac8f2fd96e994733faf3858c",
     "url": "/wedevote-nogerm/static/media/brand-icons.a046592b.woff"
+  },
+  {
+    "revision": "c5ebe0b32dc1b5cc449a76c4204d13bb",
+    "url": "/wedevote-nogerm/static/media/brand-icons.c5ebe0b3.ttf"
   },
   {
     "revision": "a1a749e89f578a49306ec2b055c073da",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/wedevote-nogerm/static/media/LINE@_APP_typeA.60a89fa1.png"
   },
   {
-    "revision": "9eb50eaa649a4c9301a6ddfc0b43cc76",
+    "revision": "a5790d6872b3a7efdc80358d5ba6f482",
     "url": "/wedevote-nogerm/index.html"
   }
 ];
