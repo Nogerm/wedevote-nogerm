@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Icon, Modal, Form } from 'semantic-ui-react'
-import { getRoutineReminder, addRoutineReminder, updateRoutineReminder, removeRoutineReminder } from '../MongoDB';
-import { remindCreateNewGroup, remindDeleteGroup } from '../Api';
+import { Button, Icon, Modal, Form } from 'semantic-ui-react';
+import { remindCreateNewGroup, remindDeleteGroup, remindCreateNewMsg, remindUpdateMsg, remindDeleteMsg } from '../Api';
 const uuidv4 = require('uuid/v4');
 
 export default class ReminderModal extends Component {
@@ -44,16 +43,7 @@ export default class ReminderModal extends Component {
   }
 
   modalReminderAddMsgOpen = () => {
-    this.setState({ 
-      modalReminderAddMsgShow: true
-    }, () => {
-      getRoutineReminder().then(data => {
-        const msgGroup = data.find(group => group._id === this.state.reminderId);
-        this.setState({
-          reminderMsgs: [...msgGroup.msgs]
-        });
-      });
-    });
+    this.setState({ modalReminderAddMsgShow: true });
   }
 
   modalReminderAddMsgClose = () => {
@@ -61,34 +51,30 @@ export default class ReminderModal extends Component {
   }
 
   modalReminderAddMsgSubmit = () => {
-    let msgs = [...this.state.reminderMsgs];
-    let newData = '';
-    const isText = (this.state.inputMsgType === 'text') ? true : false;
-
-    if(isText) {
-      newData = {
+    let newMsg = {};
+    if(this.state.inputMsgType === 'text') {
+      newMsg = {
         id: uuidv4(),
-        isText: isText,
+        type: "text",
         text: this.state.inputMsgContent
       }
     } else {
-      newData = {
+      newMsg = {
         id: uuidv4(),
-        isText: isText,
+        type: "sticker",
         pkgId: this.state.inputPkgId,
         stkrId: this.state.inputStkrId
       }
     }
 
-    msgs.push(newData);
-    updateRoutineReminder(this.state.reminderId, msgs)
-    .then(() => {
-      this.setState({
-        reminderMsgs: msgs
-      }, () => {
-        console.log("NEW STATE: "+JSON.stringify(this.state.reminderMsgs));
-        this.modalReminderAddMsgClose();
-      });
+    remindCreateNewMsg(this.state.reminderId, newMsg)
+    .then(response => {
+      console.log("remindCreateNewMsg OK :" + JSON.stringify(response.data));
+      this.modalReminderAddMsgClose();
+    })
+    .catch(err => {
+      console.log("remindCreateNewMsg NG :" + JSON.stringify(err));
+      this.modalReminderAddMsgClose();
     });
   }
 
@@ -113,17 +99,7 @@ export default class ReminderModal extends Component {
   }
 
   modalReminderRemoveMsgOpen = () => {
-    this.setState({ 
-      modalReminderRemoveMsgShow: true
-    }, () => {
-      getRoutineReminder().then(data => {
-        console.log("[PrayerModal queryData]" + JSON.stringify(data));
-        const msgGroup = data.find(group => group._id === this.state.reminderId);
-        this.setState({
-          reminderMsgs: [...msgGroup.msgs],
-        });
-      });
-    });
+    this.setState({ modalReminderRemoveMsgShow: true });
   }
 
   modalReminderRemoveMsgClose = () => {
@@ -131,32 +107,19 @@ export default class ReminderModal extends Component {
   }
 
   modalReminderRemoveMsgSubmit = () => {
-    let msgs = [...this.state.reminderMsgs];
-    const updateIdx = msgs.findIndex(item => item.id === this.state.reminderMsg.id);
-    msgs.splice(updateIdx, 1);
-    updateRoutineReminder(this.state.reminderId, msgs)
-    .then(() => {
-      this.setState({
-        reminderMsgs: msgs
-      }, () => {
-        console.log("NEW STATE: "+JSON.stringify(this.state.reminderMsgs));
-        this.modalReminderRemoveMsgClose();
-      });
+    remindDeleteMsg(this.state.reminderId, this.state.reminderMsg.id)
+    .then(response => {
+      console.log("remindDeleteMsg OK " + JSON.stringify(response.data));
+      this.modalReminderRemoveMsgClose();
+    })
+    .catch(err => {
+      console.log("remindDeleteMsg NG " + JSON.stringify(err));
+      this.modalReminderRemoveMsgClose();
     });
   }
 
   modalReminderUpdateOpen = () => {
-    this.setState({ 
-      modalReminderUpdateShow: true
-    }, () => {
-      getRoutineReminder().then(data => {
-        console.log("[PrayerModal queryData]" + JSON.stringify(data));
-        const msgGroup = data.find(group => group._id === this.state.reminderId);
-        this.setState({
-          reminderMsgs: [...msgGroup.msgs],
-        });
-      });
-    });
+    this.setState({ modalReminderUpdateShow: true });
   }
 
   modalReminderUpdateClose = () => {
@@ -164,35 +127,30 @@ export default class ReminderModal extends Component {
   }
 
   modalReminderUpdateSubmit = () => {
-    let msgs = [...this.state.reminderMsgs];
-    let newData = '';
-    const isText = (this.state.inputMsgType === 'text') ? true : false;
-
-    if(isText) {
-      newData = {
-        id: uuidv4(),
-        isText: isText,
+    let newMsg = {};
+    if(this.state.inputMsgType === 'text') {
+      newMsg = {
+        id: this.state.reminderMsg.id,
+        type: "text",
         text: this.state.inputMsgContent
       }
     } else {
-      newData = {
-        id: uuidv4(),
-        isText: isText,
+      newMsg = {
+        id: this.state.reminderMsg.id,
+        type: "sticker",
         pkgId: this.state.inputPkgId,
         stkrId: this.state.inputStkrId
       }
     }
 
-    const updateIdx = msgs.findIndex(item => item.id === this.state.reminderMsg.id);
-    msgs.splice(updateIdx, 1, newData);
-    updateRoutineReminder(this.state.reminderId, msgs)
-    .then(() => {
-      this.setState({
-        reminderMsgs: msgs
-      }, () => {
-        console.log("NEW STATE: "+JSON.stringify(this.state.reminderMsgs));
-        this.modalReminderUpdateClose();
-      });
+    remindUpdateMsg(this.state.reminderId, newMsg)
+    .then(response => {
+      console.log("remindUpdateMsg OK :" + JSON.stringify(response.data));
+      this.modalReminderUpdateClose();
+    })
+    .catch(err => {
+      console.log("remindUpdateMsg NG :" + JSON.stringify(err));
+      this.modalReminderUpdateClose();
     });
   }
 
