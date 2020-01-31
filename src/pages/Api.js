@@ -2,6 +2,37 @@ import axios from 'axios';
 
 const hostUrl = "https://wedevote-nogerm.herokuapp.com";
 
+//--------------------------
+// Routine person
+//--------------------------
+export const routineGetAll = function() {
+    return axios.get(hostUrl + "/routine_person")
+}
+
+export const routineCreateNew = function(routineObj) {
+    const data = {
+        routineObj: routineObj
+    }
+    return axios.post(hostUrl + "/routine_person", data)
+}
+
+export const routineUpdate = function(routineObj) {
+    const data = {
+        routineObj: routineObj
+    }
+    return axios.put(hostUrl + "/routine_person", data)
+}
+
+export const routineDelete = function(routineId) {
+    const data = {
+        routineId: routineId
+    }
+    return axios.delete(hostUrl + "/routine_person", { data: data})
+}
+
+//--------------------------
+// Routine remind
+//--------------------------
 export const remindGetAll = function() {
     return axios.get(hostUrl + "/routine_remind")
 }
