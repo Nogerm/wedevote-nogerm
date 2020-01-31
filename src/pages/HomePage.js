@@ -91,13 +91,17 @@ export default class HomePage extends Component {
     const requestUrl = "https://access.line.me/oauth2/v2.1/authorize";
     const channelId = "1560224466";
     const redirectUri = "https://nogerm.github.io/wedevote-nogerm";
-    //const redirectUri = "https://3c5f3393.ngrok.io";//for test
     const state = "12345";
     const nonce = "54321";
     const maxAge = 30 * 60;
 
     const loginUrl = requestUrl + "?response_type=code&client_id=" + channelId + "&redirect_uri=" + redirectUri + "&state=" + state + "&scope=openid%20profile&nonce=" + nonce + "&max_age=" + maxAge.toString();
     window.location.href = loginUrl;
+  }
+
+  handleLogoutClicked = () => {
+    const redirectUri = "https://nogerm.github.io/wedevote-nogerm";
+    window.location.href = redirectUri;
   }
 
   handleItemClick = (e, { name, path }) => {
@@ -117,6 +121,7 @@ export default class HomePage extends Component {
     const hasSendRequest = this.state.hasSendRequest;
     const hasLoggedIn = this.state.hasLoggedIn;
     const renderBodyContent = this.renderBodyContent;
+    const hasLoggedIn = this.state.hasLoggedIn;
     if(hasSendRequest && hasLoggedIn) {
       return (
         <Grid.Row columns={2}>
@@ -155,7 +160,8 @@ export default class HomePage extends Component {
               <Header as='h1' style={{color:'white', margin:'0px', padding:'8px', flex:1, fontFamily: 'Roboto'}}>LINE Console</Header>
               <Image avatar src={userImageUrl} style={{width:'52px', height:'52px', padding:'8px'}}/>
               <Header as='h1' style={{color:'white', margin:'0px', minWidth:'100px', padding:'8px', fontFamily: 'Noto Sans TC'}}>{userName}</Header>
-              <Button floated='right' style={{color:'white', background:'#00B300', margin:'8px'}} onClick={this.handleLoginClicked}>LINE LOGIN</Button>
+              {!hasLoggedIn && <Button floated='right' style={{color:'white', background:'#00B300', margin:'8px'}} onClick={this.handleLoginClicked}>登入</Button>}
+              {hasLoggedIn  && <Button floated='right' style={{color:'white', background:'#00B300', margin:'8px'}} onClick={this.handleLogoutClicked}>登出</Button>}
             </div>
           </Segment>
         </Grid.Row>
