@@ -121,7 +121,6 @@ export default class HomePage extends Component {
     const hasSendRequest = this.state.hasSendRequest;
     const hasLoggedIn = this.state.hasLoggedIn;
     const renderBodyContent = this.renderBodyContent;
-    const hasLoggedIn = this.state.hasLoggedIn;
     if(hasSendRequest && hasLoggedIn) {
       return (
         <Grid.Row columns={2}>
@@ -151,6 +150,7 @@ export default class HomePage extends Component {
     const renderBody  = this.renderBody;
     const userName = this.state.userName;
     const userImageUrl = this.state.userImageUrl;
+    const hasLoggedIn = this.state.hasLoggedIn;
     return (
       <Grid>
         <Grid.Row columns={1} style={{padding: '0px'}}>
