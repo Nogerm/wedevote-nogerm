@@ -1,7 +1,7 @@
 import React, { Component}  from 'react';
-import { Container, Icon, Table, Divider, Header, Segment } from 'semantic-ui-react'
+import { Container, Icon, Table, Divider, Header, Segment, Checkbox } from 'semantic-ui-react'
 import ReminderModal from './ReminderModal';
-import { remindGetAll } from '../Api';
+import { remindGetAll, remindEnable } from '../Api';
 
 export default class RoutineReminder extends Component {
 
@@ -14,21 +14,34 @@ export default class RoutineReminder extends Component {
   }
 
   queryData = () => {
-	remindGetAll()
-	.then(response => {
-		console.log("remindGetAll success" + response.data);
-		this.setState({
-		    routineReminders: response.data
-		});
-	}) 
-	.catch(err => {
-		console.log("remindGetAll error" + err);
-	})
+    remindGetAll()
+    .then(response => {
+      console.log("remindGetAll success" + response.data);
+      this.setState({
+          routineReminders: response.data
+      });
+    }) 
+    .catch(err => {
+      console.log("remindGetAll error" + err);
+    })
+  }
+
+  toggleCheckBox = (event, data) => {
+    const queryData = this.queryData.bind(this);
+    remindEnable(data.id, data.checked)
+    .then(response => {
+      console.log("remindEnable OK " + JSON.stringify(response.data));
+      queryData();
+    })
+    .catch(err => {
+      console.log("remindEnable NG " + JSON.stringify(err));
+    });
   }
 
   render() {
     const reminders = this.state.routineReminders;
     const queryData = this.queryData;
+    const toggleCheckBox = this.toggleCheckBox;
 
     return(
       <Segment raised>
@@ -45,6 +58,7 @@ export default class RoutineReminder extends Component {
                 <Table.Row>
                   <Table.HeaderCell colSpan='6'>
                     訊息群組#{index+1}
+                    <Checkbox toggle id={reminder._id} label="啟用群組" checked={reminder.enable} onChange={toggleCheckBox}/>
                     <ReminderModal type='REMOVE_GROUP' reminderId={reminder._id} reminderMsgs={reminder.msgs} callback={queryData}/>
 									</Table.HeaderCell>
                 </Table.Row>
